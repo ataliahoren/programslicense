@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Program license-home</title>
+	<title>Program license-Alerts</title>
 	<link rel="stylesheet" href="includes/style.css">
 	<script src="includes/jquery-1.11.3.min.js"></script>
 	<script src="includes/script.js"></script>
@@ -31,16 +31,13 @@
             </ul>
         </nav>
         <main> 
-	    <section id="content">
-			    <h1>Welcom to the Software License System</h1>
-			    <h2>In this System you can do:</h2>
-			    <ul>
-				    <li><a href="LicenseSelect.php">View Exsisting information about Licenses, Projects and Contract</a>s</li>
-				    <li><a href="LicenseCreate.php">Create new License Contract</a></li>
-				    <li><a href="LicenseAlerts.php">Getting alerts</a></li>
-				    <li><a href="LicenseSelect.php">Export information</a></li>
-			    </ul>
+          <section id="content">
+            <h1>Notifications</h1>
+			    <h2>ALERTS</h2>
+				    <h3>Contract will be expire in 60 days</h3>
+				    <h3>Projects without licenses</h3>
 	    </section> 
+          </section>
 	    </main>
          <div class="clear"></div>
      </div>

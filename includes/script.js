@@ -1,10 +1,12 @@
- $("document").ready(function() {
- 	 $("#chosen_sub").click(function(){
- 	 	$("chosen_main").css({"backgrond-color":"url(../images/bgr.jpg)"});
- 		$("chosen_sub").css({"color":"94b52c"});
- 	});
- 	
- 	/*$("ul #first").mouseover(function(){
-	$("nav #sub_menu").html("<li>hi</li>");
- 	});	*/
- });   
+
+ $(document).ready(function () {
+     $("#menu h3").click(function () {
+         //slide up all the link lists     
+         $("#menu ul ul").slideUp();
+         //slide down the link list below the h3 clicked - only if its closed
+         if (!$(this).next().is(":visible")) {
+             $(this).next().slideDown();
+         }
+     })
+ })
+

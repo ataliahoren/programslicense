@@ -1,133 +1,159 @@
-* {
-padding:0px;
-margin:0px;
-}
+/*custom font for text*/
+@import url(http://fonts.googleapis.com/css?family=Nunito);
 
-header,section,nav,aside,footer,main, article, h1 {
-display:block;
-}
+/*Basic reset*/
+* {margin: 0; padding: 0;}
 
-main{
-background: #fcfcfc;	
-height: 470px;
-width: 100%;
+header,section,nav,aside,footer,main, article {
+    display:block;
 }
 
 body {
-height: 100%;
+	background: url(../images/content_repeat.jpg) repeat-x;	
+	font-family: Nunito, arial, verdana;
 }
 
 #logo{
-height: 85px;
-background: url(../images/elbit.png) top left;
-background-repeat: no-repeat;
-display: block;
+    height: 85px;
+    background: url(../images/elbit.png);
+    background-repeat: no-repeat;
+    position: relative; left: 1120px;
+    display: block;
 }
 
 #wrapper {
-margin: 0px auto;
-width:100%;
+    margin: 0px auto;
+    width:100%;
 }
 
 header {
-width:100%;
-height:90px;
-background: url(../images/content_repeat.jpg) repeat-x;	
-}
-
-nav {
-background: url(../images/menu.jpg) repeat-x;
-font-size:18px;
-width:100%;
-height:25px;
-}
-
-aside {
-width:25%;
-height:100%;
-float:left;
-}
-
-section {
-width:75%;
-float:left;
-
-}
-
-footer {
-color: #717171;
-font-family:Verdana;
-font-size: 12px;
-height:10%;
-width:100%;
-background: url(../images/content_repeat.jpg) repeat-x;	
-}
-
-ul {list-style-type:none};
-
-li a:hover  {
-background-color: #666666; 
-}
-
-#menu li, #sub_menu li {
-margin-left:20px;
-margin-right:10px;
-float:left;
-}
-
-#menu a:link, #menu a:visited, #sub_menu a:link, #sub_menu a:visited{
-text-decoration: none;
-font-family: Verdana;
-color:#fcfcfc;
-float:left;
-}
-
-#menu a:hover{
-	background: url(../images/bgr.jpg);
-	border-radius: 5px;
-}
-
-#sub_menu a:hover{
-	color: #94b52c; 
-}
-
-
-footer a:link, footer a:visited
-{
-	text-decoration: none;
-	color: #717171;
-	font-size: 11px;	
-}
-
-h1 {
-    color: #717171;
-    font-family: Verdana;
-    font-size: 17px;
-    line-height: 24px;
-    font-weight: normal;
-    padding: 10px;
-}
-
-h2{
-    font-family: Verdana;
-    font-size: 15px;	
-     padding: 10px;
-}
-
-#content li{
-	font-family: Verdana;
-	color: #717171;
-    font-size: 13px;	
-    padding-left: 40px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background: url(../images/home_list.png) no-repeat left center;
-
+    width:100%;
+    height:90px;
 }
 
 .clear { clear:both; }
 
-/*login*/
+main{	
+    height: 460px;
+    width: 100%;
+    position: absolute; top:138px; left:4px;
+}
+
+footer{
+    background: #004a8f;
+    height: 10px;
+}
+
+#menu, #menu2 {
+	background: #003545;;
+}
+
+
+#menu {
+	width: 250px;
+    color: white;
+}
+
+ #menu2 h3 a{
+	color: white;
+    text-decoration: none;
+ }
+
+#menu2 {
+    width:100%;
+    position: absolute; left:250px; top:90px;
+
+}
+
+/*heading styles*/
+#menu h3, #menu2 h3 {
+	font-size: 16px;
+	line-height: 34px;
+	background: #004a8f; 
+}
+
+#menu h3 {
+	padding: 0 70px;
+}
+
+
+/*heading hover effect*/
+#menu h3:hover, #menu2 h3:hover {
+	text-shadow: 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+/*list items*/
+#menu li, ul, #menu2 ul li {
+	list-style-type: none;
+}
+
+
+/*links*/
+#menu ul ul li a {
+	color: white;
+	text-decoration: none;
+	font-size: 13px;
+	line-height: 24px;
+	padding: 0 19px;
+    position:relative;
+    z-index:999;
+    background: #003545;
+}
+/*hover effect on links*/
+#menu ul ul li a:hover {
+	background: #003545;
+	border-left: 5px solid lightgreen;
+}
+/*Lets hide the non active LIs by default*/
+#menu ul ul {
+	display: none;
+}
+
+
+/*content area*/
+
+#content h1 {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: bold;
+    padding: 10px;
+    color: #717171;
+}
+#content h2{
+    font-size: 17px;
+     padding: 10px;
+     text-decoration: underline;
+}
+#content ul li{
+    font-size: 15px;	
+    padding-left: 40px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background: url(../images/home_list.png) no-repeat left center;
+}
+
+#content ul li a:hover, #content ul li a:link, #content ul li a:visited {
+	text-decoration: none;
+    color: #004a8f;
+}
+
+/*footer*/
+
+#buttom{
+   width: 100%;
+   height: 25px;
+   position:absolute; top:620px;
+   padding-top: 5px;	
+}
+footer a:link, footer a:visited, footer p
+{
+    font-size: 15px;
+	text-decoration: none;
+	color: #000000;
+}
+
+
+/*************login page************/
 
 #login{
 	background: url(../images/login_bg1.jpg) no-repeat top center;
@@ -155,46 +181,24 @@ h2{
 	width: 508px;
 }
 
-#login_inner{
-	color: #161616;
-	font-family: Tahoma;
-	font-size: 13px;
-	line-height: 12px;
-	margin: 0 auto;
-	width: 310px;
-	display:table;
-	border: 0px;
+ /**form*/
+#loginbox form{
+    position: absolute; left:20px;
 }
 
-#login_inner article{
-	display: table-row;
-	color: #161616;
-	font-family: Tahoma;
-	font-size: 13px;
-	line-height: 12px;
-	
+#loginbox label{
+   display: table-cell;
+   font-weight: bold;
+   font-size: 17px;
+   padding: 0 0 15px 0;
 }
 
-#login_inner p{
-	diaplay: table-cell;
-	padding: 0 0 6px 0;
-	color: #161616;
-	font-family: Tahoma;
-	font-weight: bold;
-	line-height: 12px;
-	float: left;
-	padding-left: 20px;
-}
-
-.login_inp	{
-	background: url(../images/inp_login.gif) no-repeat;
-	border: none;
-	color: #fff;
-	font-size: 16px;
-	height: 28px;
-	padding: 6px 6px 0 10px;
-	width: 204px;
-	position: relative;
+#loginbox form label input{
+	position: absolute; left: 140px;		
+    border-radius: 5px;
+    width: 270px;
+    padding: 5px;
+    margin-bottom: 15px;
 }
 
 .submit_login{
@@ -202,24 +206,56 @@ h2{
 	height:32px;
 	border: none;
 	cursor: pointer;
-	font-family: Tahoma;
 	font-weight: bold;
 	display: block;
 	font-size: 12px;
 	color: #fff;
-	position: absolute;
-	left: 360px;
-	width: 100px;
+	position: absolute; left: 360px; top:160px;
+    width: 110px;
 }
 
 .submit_login:hover	{
-	background: url(../images/inp_login1.png) no-repeat;
-	color: #94b52c;
+	color: #004a8f;
+}
+	 
+/*********search lisense*******/
+.searchLicense label, .CreateLicense label{
+
+   font-weight: bold;
+   font-size: 17px;
+   position: relative; left: 20px;
+   color: #004a8f;
+
 }
 
- .checkbox-size	{
-	width:13%;
-	height:13px;
-	margin: 8px 0;
-	float:left;
-	}	 
+.searchLicense form label input, .CreateLicense form label input{
+	position: relative; left:20px;		
+    border-radius: 15px;
+    width: 250px;
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+#send{
+	position: relative; left:20px;		
+    border-radius: 15px;
+    width: 80px;
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+/*********create lisense*******/
+#comments{
+	position: relative; left:20px;		
+    border-radius: 15px;
+    width: 250px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+/*******notofications*********/
+#content h3{
+    margin-left: 10px;
+    margin-bottom: 5px;
+    color: #004a8f;
+}

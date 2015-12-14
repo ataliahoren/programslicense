@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Program license-home</title>
+	<title>Program license-View</title>
 	<link rel="stylesheet" href="includes/style.css">
 	<script src="includes/jquery-1.11.3.min.js"></script>
 	<script src="includes/script.js"></script>
@@ -31,16 +31,19 @@
             </ul>
         </nav>
         <main> 
-	    <section id="content">
-			    <h1>Welcom to the Software License System</h1>
-			    <h2>In this System you can do:</h2>
-			    <ul>
-				    <li><a href="LicenseSelect.php">View Exsisting information about Licenses, Projects and Contract</a>s</li>
-				    <li><a href="LicenseCreate.php">Create new License Contract</a></li>
-				    <li><a href="LicenseAlerts.php">Getting alerts</a></li>
-				    <li><a href="LicenseSelect.php">Export information</a></li>
-			    </ul>
-	    </section> 
+          <section id="content">
+            <h1>Srearch License</h1>
+            <h2>Search By:</h2>
+            <nav class="searchLicense">
+				<form action='' method='POST' name="loginForm" onsubmit="return loginCheckMail();">						
+							<label>Project Name<input type="text" name="pName"/></label>
+                            </br>
+							<label>License Name<input type="text" name="pName"/></label>
+                            </br>
+                            <label><input id="send" type="submit" value="Search"/></label>
+				</form>
+			</nav>
+          </section>
 	    </main>
          <div class="clear"></div>
      </div>

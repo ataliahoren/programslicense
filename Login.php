@@ -15,27 +15,15 @@
 			</header>
 			<div class="clear"></div>
 			<nav id="loginbox">
-				<form action='' method='POST' name="loginForm" onsubmit="return loginCheckMail();">
-					<section id="login_inner">
-						<article>
-							<p><b>UserName</b></p>
-							<p><input type="text" class="login_inp" name="user" style="direction:ltr;"/></p>
-						</article>
-						<article>
-							<p><b>Password</b></p>
-							<p><input type="password" name="pass" class="login_inp" style="direction:ltr;"/></p>
-						</article>
-						<article>
-							<th></th>
-							<p valign="top"><input type="checkbox" class="checkbox-size" id="login-check" /><label for="login-check">Remember me</label></p>
-						</article>
-						<article>
-							<th></th>
-							<p><input type="submit" class="submit_login" value="Login"/></p>
-						</article>
-					</section>
+				<form action='' method='POST' name="loginForm" onsubmit="return loginCheckMail();">						
+							<label>UserName<input type="text" name="user"/></label>
+                            </br>
+							<label>Password<input type="password"  class="login_inp" name="pass"/></label>
+                            </br>
+							<label>Remember me<input type="checkbox" class="checkbox-size"/></label>
+							<input type="submit" class="submit_login" value="Login"/>
 				</form>
 			</nav>
-</div>
-</body>
+    </div>
+  </body>
 </html>
