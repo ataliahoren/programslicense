@@ -1,12 +1,6 @@
 <?php
 ob_start();
-session_start();
 include "configFile.php";
-if( isset($_SESSION['pName']) )
-{
-	$pName = $_SESSION['pName'];
-	echo $pName;
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,7 +42,7 @@ if( isset($_SESSION['pName']) )
             <h2>Search By:</h2>
             <nav class="searchLicense">
 				
-				<form action='' method='POST' name="loginForm" onsubmit="return loginCheckMail();">					
+				<form action="" method="POST" name="loginForm" onsubmit="return loginCheckMail();">					
 				  <div class="form-group">
 				    <label for="exampleInputProject">Project Name</label>
 				    <input type="text" name="pName" class="form-control" placeholder="Project Name"/>
@@ -63,15 +57,14 @@ if( isset($_SESSION['pName']) )
 				</form>
 			</nav>
           </section>
-		  <div class="clear"></div>
-		  <section id="resultePhp2">
+		  <section id="resultePhp">
 		 <?php
 				$conn = mysqli_connect($servername, $username, $password, $dbname); // Create connection
 				if (!$conn) // Check connection
 				{	
 				    die("Connection failed: " . mysqli_connect_error());
 				}
-				
+				if( isset($_GET['pName']) )				{					$pNameP = $_GET['pName'];				}
 				$sql = "SELECT projects_219.pName,
 				projects_219.pID,
 				licenses_proj_219.lcID, 
@@ -89,10 +82,11 @@ if( isset($_SESSION['pName']) )
 				FROM projects_219
 				join licenses_proj_219 ON projects_219.pID = licenses_proj_219.pID 
 				join licenses_contract_219 ON licenses_proj_219.lcID = licenses_contract_219.lcID 
-				ORDER BY projects_219.pName";
+				WHERE pName = '$pNameP'";
 							
 				$result = $conn->query($sql);
 				if ($result->num_rows > 0) {
+					echo "<h4>Licenses in Projects</h4>";
 				    echo "<table><tr><th>Project Name</th><th>Project ID</th><th>License ID</th>
 								<th>Project Amount</th><th>License Name</th><th>Company ID</th><th>License Amount</th>
 								<th>startDate</th><th>endDate</th><th>File</th><th>Comments</th>
@@ -115,10 +109,9 @@ if( isset($_SESSION['pName']) )
 				    }
 				    echo "</table>";
 				} else {
-				    echo "0 results";
+				    echo "The project $pNameP not found";
 				}
-				mysqli_close($conn);
-				session_destroy();
+				mysqli_close($conn);				
 				?>
 		</section>
 	    </main>
@@ -133,5 +126,3 @@ if( isset($_SESSION['pName']) )
         </script>
     </body>
 </html>
-<?php session_destroy();
-?>

@@ -38,7 +38,7 @@ include "configFile.php"
 			</ul>
 	    </header>
         <main> 
-          <section id="searchContent">
+          <section id="Content">
             <h1>Search License</h1>
             <h2>Search By:</h2>
             <nav class="searchLicense">
@@ -46,37 +46,34 @@ include "configFile.php"
 				// define variables and set to empty values
 				$pNameErr=$lNameErr = "";
 				$pName=$lName= "";
-				$error_flag = false;
+				$error_flagLName = true;				$error_flagPName = true;				
 				if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				     $pName = test_input($_POST["pName"]);					
 				     // check if name only contains letters and whitespace
 				     if (!preg_match("/^[a-zA-Z ]*$/",$pName)) {
 				       $pNameErr = "Only letters and white space allowed";
-					   $error_flag = true;
+					   $error_flagPName = false;
 				     }
-					
-				     $lName = test_input($_POST["lName"]);
+										
+				     $lName = test_input($_POST["lName"]);						
 				     // check if name only contains letters and whitespace
 				     if (!preg_match("/^[a-zA-Z ]*$/",$lName)) {
 				       $lNameErr = "Only letters and white space allowed";
-					   $error_flag = true;
-				     }
-				   }
+					   $error_flagLName = false;
+				     }				   }
 				   function test_input($data){
 				   $data = trim($data);
 				   $data = stripslashes($data);
 				   $data = htmlspecialchars($data);
 				   return $data;
-				}
-				if( isset($_POST['pName']) && !$error_flag)
-				{					
-					$_SESSION['pName'] = $_POST['pName'];
-					header('Location: ProjectName.php');
-				}
-				if( isset($_POST['lName']) && !$error_flag)
-				{					
-					$_SESSION['lName'] = $_POST['pName'];
-					header('Location: LicenseName.php');
+				}								
+				if( isset($_POST['pName'])&& error_flagLName && $_POST['pName']!= '' )
+				{										
+					header('Location: ProjectName.php?pName='.$_POST['pName']);
+				}				
+				if( isset($_POST['lName']) && $error_flagLName && $_POST['lName']!= '' )
+				{									
+					header('Location: LicenseName.php?lName='.$_POST['lName']);
 				}		
 ?>
 				<form  method="POST" name="loginForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">					
@@ -90,8 +87,7 @@ include "configFile.php"
 				    <input type="text" name="lName" class="form-control" placeholder="License Name"value="<?php echo $lName;?>"/>
 					<span class="error"><?php echo $lNameErr;?></span><br>
 				  </div>
-	                        <div class="form-group">
-	                             <input class="add" type="submit" class="btn btn-default" value="Search"/>
+	                        <div class="form-group">	                             <input class="add" type="submit" class="btn btn-default" value="Search"/>
 	                         </div>
 				</form>
 			</nav>
@@ -113,9 +109,9 @@ include "configFile.php"
 					. "licenses_contract_219.File\n"
 					. "From licenses_contract_219\n"
 					. "ORDER BY licenses_contract_219.lName";	
-				$result = $conn->query($sql);
-				if ($result->num_rows > 0) {
-				    echo "<table><tr><th>ID</th><th>Name</th><th>CID</th><th>Amount</th><th>Start Date</th><th>End Date</th>
+				$result = $conn->query($sql);/*
+				if ($result->num_rows > 0) {					echo "<h1>Licences Contracts</h1>";					
+				    echo "<table><tr><th>license ID</th><th>license Name</th><th>Company ID</th><th>Amount</th><th>Start Date</th><th>End Date</th>
 						<th>File</th></tr>";
 				    // output data of each row
 				    while($row = $result->fetch_assoc()) {
@@ -132,7 +128,7 @@ include "configFile.php"
 				    echo "</table>";
 				} else {
 				    echo "0 results";
-				}
+				}*/
 				mysqli_close($conn);
 				?>
 		</section>
@@ -148,5 +144,4 @@ include "configFile.php"
         </script>
     </body>
 </html>
-<?php session_destroy();
-?>
+<?php session_destroy();?>

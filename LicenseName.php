@@ -1,12 +1,6 @@
 <?php
 ob_start();
-session_start();
 include "configFile.php";
-if( isset($_SESSION['lName']) )
-{
-	$lName = $_SESSION['lName'];
-	echo $lName;
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,7 +42,7 @@ if( isset($_SESSION['lName']) )
             <h2>Search By:</h2>
             <nav class="searchLicense">
 				
-				<form action='' method='POST' name="loginForm" onsubmit="return loginCheckMail();">					
+				<form action="#" method="POST" name="loginForm" onsubmit="return loginCheckMail();">					
 				  <div class="form-group">
 				    <label for="exampleInputProject">Project Name</label>
 				    <input type="text" name="pName" class="form-control" placeholder="Project Name"/>
@@ -63,15 +57,14 @@ if( isset($_SESSION['lName']) )
 				</form>
 			</nav>
           </section>
-		  <div class="clear"></div>
-		  <section id="resultePhp2">
+		  <section id="resultePhp">
 		 <?php
 				$conn = mysqli_connect($servername, $username, $password, $dbname); // Create connection
 				if (!$conn) // Check connection
 				{	
 				    die("Connection failed: " . mysqli_connect_error());
-				}
-			
+				}				
+							if( isset($_GET['lName']) )				{					$lNameG = $_GET['lName'];				}
 				$sql = "SELECT licenses_contract_219.lName, 
 				licenses_contract_219.lcID,
 				licenses_contract_219.cID,				
@@ -81,10 +74,11 @@ if( isset($_SESSION['lName']) )
 				licenses_contract_219.File, 
 				licenses_contract_219.Comments 
 				FROM licenses_contract_219 
-				ORDER BY licenses_contract_219.lName";
+				WHERE lName = '$lNameG'";
 							
 				$result = $conn->query($sql);
 				if ($result->num_rows > 0) {
+					echo "<h4>Licenses</h4>";
 				    echo "<table><tr><th>License Name</th><th>License ID</th><th>Company ID</th>
 								<th>Project Amount</th><th>start Date</th><th>end Date</th><th>File</th><th>Comments</th>
 						</tr>";
@@ -103,10 +97,9 @@ if( isset($_SESSION['lName']) )
 				    }
 				    echo "</table>";
 				} else {
-				    echo "0 results";
+				    echo "license $lNameG not found" ;
 				}
 				mysqli_close($conn);
-				session_destroy();
 				?>
 		</section>
 	    </main>
@@ -121,5 +114,3 @@ if( isset($_SESSION['lName']) )
         </script>
     </body>
 </html>
-<?php session_destroy();
-?>

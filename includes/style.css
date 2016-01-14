@@ -298,8 +298,14 @@ main	{
 	float: left;
 	
 }
+
+#resultePhp h4 {
+	text-align: center;
+	
+}
+
 #resultePhp {
-		margin-top: 35px;
+		margin-top: 25px;
 		float: left;
 		width: 800px;
 }
@@ -322,5 +328,6 @@ table th {
 	text-align: center;
 	height: 20px;	
 	background: #d6dde7;	/* purple  */
-	color: black;	
+	color: black;
+	width:30px;
 }
