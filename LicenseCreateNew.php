@@ -42,7 +42,7 @@ include "configFile.php"
 			    <h1>Create License - create new</h1>
                 <h2>Fill in the following fields:</h2>
                 <nav class="CreateLicense">
-				    <form action="LicenseCreate1.php" method="post" name="CreateForm">
+				    <form action="LicenseCreate.php" method="post" name="CreateForm">
 				    	<section class="formCol">
 				    		<div class="form-group">
 					    		<label>License ID</label>

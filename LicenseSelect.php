@@ -38,7 +38,7 @@ include "configFile.php"
 			</ul>
 	    </header>
         <main> 
-          <section id="Content">
+          <section id="searchContent">
             <h1>Search License</h1>
             <h2>Search By:</h2>
             <nav class="searchLicense">
