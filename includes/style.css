@@ -4,21 +4,13 @@
 /*Basic reset*/
 * {margin: 0; padding: 0;}
 
-header,section,nav,aside,footer,main, article {
+header,section,nav,aside,footer,main, article, ul, a, h3, h3, h1, p {
     display:block;
 }
 
 body {
-	background: url(../images/content_repeat.jpg) repeat-x;	
+	width:100%;
 	font-family: Nunito, arial, verdana;
-}
-
-#logo{
-    height: 85px;
-    background: url(../images/elbit.png);
-    background-repeat: no-repeat;
-    position: relative; left: 1120px;
-    display: block;
 }
 
 #wrapper {
@@ -26,152 +18,128 @@ body {
     width:100%;
 }
 
-header {
-    width:100%;
-    height:90px;
-}
-
 .clear { clear:both; }
 
-main{	
-    height: 460px;
-    width: 100%;
-    position: absolute; top:138px; left:4px;
-}
-
-footer{
-    background: #004a8f;
-    height: 10px;
-}
-
-#menu, #menu2 {
-	background: #003545;;
-}
-
-
-#menu {
-	width: 250px;
-    color: white;
-}
-
- #menu2 h3 a{
-	color: white;
-    text-decoration: none;
- }
-
-#menu2 {
-    width:100%;
-    position: absolute; left:250px; top:90px;
-
-}
-
-/*heading styles*/
-#menu h3, #menu2 h3 {
-	font-size: 16px;
-	line-height: 34px;
-	background: #004a8f; 
-}
-
-#menu h3 {
-	padding: 0 70px;
-}
-
-
-/*heading hover effect*/
-#menu h3:hover, #menu2 h3:hover {
-	text-shadow: 0 0 1px rgba(255, 255, 255, 0.7);
-}
-
-/*list items*/
-#menu li, ul, #menu2 ul li {
+ul {
 	list-style-type: none;
+	float: left;
+	position: absolute;
 }
 
+/*header area*/
 
-/*links*/
-#menu ul ul li a {
-	color: white;
-	text-decoration: none;
-	font-size: 13px;
-	line-height: 24px;
-	padding: 0 19px;
-    position:relative;
-    z-index:999;
-    background: #003545;
-}
-/*hover effect on links*/
-#menu ul ul li a:hover {
-	background: #003545;
-	border-left: 5px solid lightgreen;
-}
-/*Lets hide the non active LIs by default*/
-#menu ul ul {
-	display: none;
+header {
+    width:100%;
+    height:132px;
+   	float: right;
+    background: #d6dde7 url(../images/navBgr.jpg) repeat-x;
 }
 
+#logo{
+    height: 85px;
+    background: url(../images/elbit.png);
+    background-repeat: no-repeat;
+    background-position:right;
+    margin-right:20px;
+    margin-top:5px;
+}
 
+#user{
+	float:right;
+	position: relative;
+	right:40px;
+	top:17px;
+}
+
+#user p, #user a {
+	display:inline;	
+	margin-left:4px;
+}
 /*content area*/
 
-#content h1 {
-    font-size: 20px;
+main  {
+	width:100%;
+	background-color:#FFFFFF;
+	float:left;	
+}
+
+#content h1, #searchContent h1 {
+    font-size: 24px;
     line-height: 24px;
     font-weight: bold;
-    padding: 10px;
-    color: #717171;
+    padding-left: 20px;
+	margin-top: 30px;
+	color:#004a8f;
+	text-shadow: 2px 2px #999999;
 }
-#content h2{
-    font-size: 17px;
-     padding: 10px;
-     text-decoration: underline;
+#content h2, #searchContent h2 {
+    font-size: 18px;
+   	padding-left: 20px;
+    text-decoration: underline;
+	margin-top: 20px;
 }
-#content ul li{
-    font-size: 15px;	
+#content ul li, #searchContent ul li {
+    font-size: 16px;	
     padding-left: 40px;
     padding-top: 12px;
     padding-bottom: 12px;
-    background: url(../images/home_list.png) no-repeat left center;
+    background: url(../images/flag3.png) no-repeat left center;
+    margin-left: 30px;
+	margin-top: 10px;
 }
 
 #content ul li a:hover, #content ul li a:link, #content ul li a:visited {
 	text-decoration: none;
-    color: #004a8f;
 }
 
 /*footer*/
 
-#buttom{
-   width: 100%;
-   height: 25px;
-   position:absolute; top:620px;
-   padding-top: 5px;	
+footer {
+   width:100%;
+   padding-top: 10px;
+   background: #032d5f;
+   float:left;  
+   height: 40px;
 }
+
 footer a:link, footer a:visited, footer p
 {
     font-size: 15px;
-	text-decoration: none;
-	color: #000000;
+    color: #FFFFFF;	
+    text-decoration: none;
+    display:inline;
 }
-
 
 /*************login page************/
 
 #login{
-	background: url(../images/login_bg1.jpg) no-repeat top center;
+background: url(../images/login_bg1.jpg);
 }
 
 #wrapper_login{
 	margin: 0px auto;
-	width: 508px;
+
 }
 
 #logo_login{
 	float: left;
 	height: 90px;
 	margin: 120px 0 0 15px;
-	background: url(../images/elbit.png);
-	background-repeat: no-repeat;
+	background: url(../images/elbit.png) no-repeat center;
 }
 
+.container{
+	width:350px;
+}
+
+.form-signin button{
+	font-size:16px;
+	height:40px;
+	background:#032d5f;
+}
+
+
+/*
 #loginbox	{
 	background: url(../images/loginbox_bg1.png) no-repeat;
 	font-size: 12px;
@@ -181,7 +149,7 @@ footer a:link, footer a:visited, footer p
 	width: 508px;
 }
 
- /**form*/
+
 #loginbox form{
     position: absolute; left:20px;
 }
@@ -194,7 +162,8 @@ footer a:link, footer a:visited, footer p
 }
 
 #loginbox form label input{
-	position: absolute; left: 140px;		
+	position: absolute; 
+	left: 140px;		
     border-radius: 5px;
     width: 270px;
     padding: 5px;
@@ -217,45 +186,141 @@ footer a:link, footer a:visited, footer p
 .submit_login:hover	{
 	color: #004a8f;
 }
-	 
+*/	 
 /*********search lisense*******/
-.searchLicense label, .CreateLicense label{
-
+.searchLicense label, .CreateLicense label {
    font-weight: bold;
-   font-size: 17px;
+   font-size: 16px;
    position: relative; left: 20px;
-   color: #004a8f;
-
 }
 
-.searchLicense form label input, .CreateLicense form label input{
-	position: relative; left:20px;		
-    border-radius: 15px;
-    width: 250px;
-    height: 20px;
+.searchLicense form input, .CreateLicense form input, .CreateLicense form textarea{
+	position: relative; 	
+	left: 20px;	
+    width: 270px;
     margin-bottom: 10px;
 }
 
-#send{
-	position: relative; left:20px;		
-    border-radius: 15px;
-    width: 80px;
-    height: 20px;
+.add{
+	position: relative; 	
+	left: 20px;	
     margin-bottom: 10px;
+
 }
+
 
 /*********create lisense*******/
+/*
+.CreateLicense .formCol, {
+	margin-top: 15px;
+	float:left;
+	width: 350px;
+}
+
+
 #comments{
-	position: relative; left:20px;		
-    border-radius: 15px;
-    width: 250px;
+	position: relative; 		
+    border-radius: 10px;
+    width: 270px;
     height: 60px;
     margin-bottom: 10px;
 }
 
+*/
+#box {
+	width:20px;
+	height: 20px;
+	top:4px;
+	display:inline;
+} 
+#box label {
+	display: inline;
+	left: 10px;
+}
+.CreateLicenseBar section{
+    width: 190px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left:20px;
+    float:left;
+}
+
+.CreateLicenseBar section a button{
+    width: 170px;
+}
+
+.searchLicense section, .CreateLicense  section, #resultePhp section {
+	width: 400px;
+	float:left;
+}
+
+
 /*******notofications*********/
 #content h3{
-    margin-left: 10px;
-    margin-bottom: 5px;
-    color: #004a8f;
+    margin-left: 20px;
+    margin-bottom: 2px;
+ 	font-size: 16px;
+}
+
+
+/*******style of table result לעדכן!!*********/
+/*
+tr.Projects_Result{
+  background-color: #86B404;<!--hsl(120, 30%, 70%);-->
+}
+tr.Projects_Result:hover{
+  background-color: hsl(150,10%,50%);
+  cursor: pointer;
+}*/
+
+
+/*******mobile*********/
+@media (max-width:590px) {
+	.searchLicense section, .CreateLicense section, .CreateLicenseBar section{
+	float:none
+	width:100%
+	margin: 0px;
+	}		
+	#logo{
+		/*לטפל*/
+	}
+}
+
+@media (min-width:591px) {
+main	{
+	height: 500px;
+	}		
+}
+/******************************* TABLES **********************************/
+
+#searchContent {
+	width: 450px;
+	float: left;
+	
+}
+#resultePhp {
+		margin-top: 35px;
+		float: left;
+		width: 800px;
+}
+
+table {	
+	font-size: 90%;
+	text-align: center;
+	
+	margin: 10px;
+	width:780px;
+}
+
+table td {
+	text-align: center;
+	height: 20px;	
+	background: #ffffff;	
+}
+
+table th {
+	text-align: center;
+	height: 20px;	
+	background: #d6dde7;	/* purple  */
+	color: black;	
 }

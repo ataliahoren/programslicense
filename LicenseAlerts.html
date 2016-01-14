@@ -1,7 +1,10 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
 <html>
 <head>
-	<title>Program license-Create</title>
+	<title>Program license-Alerts</title>
 	<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -14,37 +17,60 @@
 	<script src="includes/jquery-1.11.3.min.js"></script>
 	<script src="includes/script.js"></script>
 </head>
-<body>
+	<body>
     <div id="wrapper">
     	<header>
 			<a href="index.html" id="logo" alt="logo" title="logo" /></a>
-			<section id="user">
+			 <section id="user">
 				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 				<p>Atalia Schuster |<a href="login.php">Log Out</a></p>
 		     </section>
 			<ul class="nav nav-tabs">
 			  <li role="presentation"><a href="index.html" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-			  <li role="presentation" class="active">
+			  <li role="presentation">
 			     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 			      Licenses <span class="caret"></span></a>
-			    <script>document.write(submenu)</script>
+				 <script>document.write(submenu)</script>
 			  </li>			
-			  <li role="presentation"><a href="LicenseAlerts.html" aria-controls="Notifications" role="tab" data-toggle="tab">Notifications</a></li>
+			  <li role="presentation" class="active"><a href="LicenseAlerts.html" aria-controls="Notifications" role="tab" data-toggle="tab">Notifications</a></li>
 				</ul>
 	    </header>
         <main> 
           <section id="content">
-			    <h1>Create License</h1>
-                <!--<h2>Choose your step:</h2>-->
-                <nav class="CreateLicenseBar">
-                	<section>
-                		<a href="LicenseCreateNew.php" target="_blank"><button>Create New</button></a>
-                	</section>
-                	<section>
-                		<a id="assign" href="LicenseSelect.php" target="_blank"><button>Assign to project</button></a>
-                	</section>
-			    </nav>
+            <h1>Notifications</h1>
+			    <h2>ALERTS</h2>
+				    <h3>Contract will be expire in 60 days</h3>
+				    <h3>Projects without licenses</h3>
+	    </section> 
           </section>
+          <!---result all data into a table
+          <section id="side">
+          			<?php 
+						// connecting to DB
+						$con=  mysqli_connect('localhost','root','pass','DB');
+						  // enable hebrew input
+						  mysqli_set_charset($con,'utf8');
+						  
+						  $result = mysqli_query($con,"
+														SELECT *
+														FROM `projects`
+														WHERE pEndDate BETWEEN CURRENT_DATE AND DATE_ADD(CURRENT_DATE,INTERVAL 30 DAY)
+														ORDER BY pEndDate;"
+														
+												);
+						 if (mysqli_num_rows($result) == 0) echo "אין פרויקטים עם תאריכי גמר קרובים";
+						 else {
+							$i=0;
+							while(($row = mysqli_fetch_array($result)) && ($i<5) )
+							{
+								echo "&nbsp;<b>".$row['pName'] . " - </b>  " . $row['pEndDate'];
+								echo "<br>";
+								$i++;
+							}
+							if ($i==5 && $row) {echo "<a href=''>...</a>";}
+						 }
+					 ?>
+          </section> -->
 	    </main>
          <div class="clear"></div>
      </div>

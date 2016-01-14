@@ -1,8 +1,11 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
 <html>
 <head>
-	<title>Program license-Create</title>
-	<!-- Latest compiled and minified CSS -->
+	<title>Program license-home</title>
+		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 		<!-- Optional theme -->
@@ -23,8 +26,8 @@
 				<p>Atalia Schuster |<a href="login.php">Log Out</a></p>
 		     </section>
 			<ul class="nav nav-tabs">
-			  <li role="presentation"><a href="index.html" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-			  <li role="presentation" class="active">
+			  <li role="presentation" class="active"><a href="index.html" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+			  <li role="presentation">
 			     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 			      Licenses <span class="caret"></span></a>
 			    <script>document.write(submenu)</script>
@@ -33,18 +36,16 @@
 				</ul>
 	    </header>
         <main> 
-          <section id="content">
-			    <h1>Create License</h1>
-                <!--<h2>Choose your step:</h2>-->
-                <nav class="CreateLicenseBar">
-                	<section>
-                		<a href="LicenseCreateNew.php" target="_blank"><button>Create New</button></a>
-                	</section>
-                	<section>
-                		<a id="assign" href="LicenseSelect.php" target="_blank"><button>Assign to project</button></a>
-                	</section>
-			    </nav>
-          </section>
+	    <section id="content">
+			    <h1>Welcome to the Software License System</h1>
+			    <h2>In this System you can:</h2>
+			    <ul>
+				    <li><a href="LicenseSelect.php">View Existing information about Licenses, Projects and Contracts</a></li>
+				    <li><a href="LicenseCreate.php">Create new License Contract</a></li>
+				    <li><a href="LicenseAlerts.html">Getting alerts</a></li>
+				    <li><a href="#">Export information</a></li>
+			    </ul>
+	    </section> 
 	    </main>
          <div class="clear"></div>
      </div>
@@ -53,6 +54,7 @@
 	    </footer>
         <script>
             (function() {
+				subMen();
                 })();
         </script>
     </body>

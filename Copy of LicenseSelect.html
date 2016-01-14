@@ -23,11 +23,7 @@ include "configFile.php"
     <div id="wrapper">
     	<header>
 			<a href="index.html" id="logo" alt="logo" title="logo" /></a>
-			<section id="user">
-				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-				<p>Atalia Schuster |<a href="login.php">Log Out</a></p>
-		    </section>
-			<ul class="nav nav-tabs">
+						<ul class="nav nav-tabs">
 			  <li role="presentation"><a href="index.html" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
 			  <li role="presentation" class="active">
 			     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -35,6 +31,10 @@ include "configFile.php"
 			     <script>document.write(submenu)</script>			 
               </li>			
 			  <li role="presentation"><a href="LicenseAlerts.html" aria-controls="Notifications" role="tab" data-toggle="tab">Notifications</a></li>
+			  <section id="user">
+			  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+			  <p> | Atalia Schuster <a href="login.php">Log Out</a></p>
+			  </section>
 			</ul>
 	    </header>
         <main> 
@@ -82,12 +82,12 @@ include "configFile.php"
 				<form  method="POST" name="loginForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">					
 				  <div class="form-group">
 				    <label for="exampleInputProject">Project Name</label>
-				    <input type="text" name="pName" class="form-control" placeholder="Project Name" value="<?php echo $pName;?>"/>
+				    <input type="text" name="pName" class="form-control"  maxlength="50" placeholder="Project Name" value="<?php echo $pName;?>"/>
 					<span class="error"><?php echo $pNameErr;?></span><br>
 				  </div>				  
 				  <div class="form-group">
 				    <label for="exampleInputPassword1">License Name</label>
-				    <input type="text" name="lName" class="form-control" placeholder="License Name"value="<?php echo $lName;?>"/>
+				    <input type="text" name="lName" class="form-control" maxlength="50" placeholder="License Name"value="<?php echo $lName;?>"/>
 					<span class="error"><?php echo $lNameErr;?></span><br>
 				  </div>
 	                        <div class="form-group">
@@ -140,7 +140,7 @@ include "configFile.php"
          <div class="clear"></div>
      </div>
 	    <footer id="buttom">
-			<p>.Copyright &copy; | MAR - Miri Haikin, Atalia Schuster, Rotem Emergi | <a href="https://il.linkedin.com/in/ataliaschuster" target="_blank">CONTACT US</a> </P>
+		<p>.Copyright &copy; | MAR - Miri Haikin, Atalia Schuster, Rotem Emergi | <a href="https://il.linkedin.com/in/ataliaschuster" target="_blank">CONTACT US</a> </P>
 	    </footer>
         <script>
             (function() {

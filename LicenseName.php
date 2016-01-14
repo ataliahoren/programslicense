@@ -1,7 +1,12 @@
 <?php
 ob_start();
 session_start();
-include "configFile.php"
+include "configFile.php";
+if( isset($_SESSION['lName']) )
+{
+	$lName = $_SESSION['lName'];
+	echo $lName;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,107 +31,74 @@ include "configFile.php"
 			<section id="user">
 				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 				<p>Atalia Schuster |<a href="login.php">Log Out</a></p>
-		    </section>
+			</section>
 			<ul class="nav nav-tabs">
 			  <li role="presentation"><a href="index.html" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
 			  <li role="presentation" class="active">
 			     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 			      Licenses <span class="caret"></span></a>
-			     <script>document.write(submenu)</script>			 
-              </li>			
+			      <script>document.write(submenu)</script>
+			  </li>			
 			  <li role="presentation"><a href="LicenseAlerts.html" aria-controls="Notifications" role="tab" data-toggle="tab">Notifications</a></li>
 			</ul>
 	    </header>
         <main> 
           <section id="searchContent">
-            <h1>Search License</h1>
+            <h1>Srearch License</h1>
             <h2>Search By:</h2>
             <nav class="searchLicense">
-<?php
-				// define variables and set to empty values
-				$pNameErr=$lNameErr = "";
-				$pName=$lName= "";
-				$error_flag = false;
-				if ($_SERVER["REQUEST_METHOD"] == "POST") {
-				     $pName = test_input($_POST["pName"]);					
-				     // check if name only contains letters and whitespace
-				     if (!preg_match("/^[a-zA-Z ]*$/",$pName)) {
-				       $pNameErr = "Only letters and white space allowed";
-					   $error_flag = true;
-				     }
-					
-				     $lName = test_input($_POST["lName"]);
-				     // check if name only contains letters and whitespace
-				     if (!preg_match("/^[a-zA-Z ]*$/",$lName)) {
-				       $lNameErr = "Only letters and white space allowed";
-					   $error_flag = true;
-				     }
-				   }
-				   function test_input($data){
-				   $data = trim($data);
-				   $data = stripslashes($data);
-				   $data = htmlspecialchars($data);
-				   return $data;
-				}
-				if( isset($_POST['pName']) && !$error_flag)
-				{					
-					$_SESSION['pName'] = $_POST['pName'];
-					header('Location: ProjectName.php');
-				}
-				if( isset($_POST['lName']) && !$error_flag)
-				{					
-					$_SESSION['lName'] = $_POST['pName'];
-					header('Location: LicenseName.php');
-				}		
-?>
-				<form  method="POST" name="loginForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">					
+				
+				<form action='' method='POST' name="loginForm" onsubmit="return loginCheckMail();">					
 				  <div class="form-group">
 				    <label for="exampleInputProject">Project Name</label>
-				    <input type="text" name="pName" class="form-control" placeholder="Project Name" value="<?php echo $pName;?>"/>
-					<span class="error"><?php echo $pNameErr;?></span><br>
-				  </div>				  
+				    <input type="text" name="pName" class="form-control" placeholder="Project Name"/>
+				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputPassword1">License Name</label>
-				    <input type="text" name="lName" class="form-control" placeholder="License Name"value="<?php echo $lName;?>"/>
-					<span class="error"><?php echo $lNameErr;?></span><br>
+				    <input type="text" name="lName" class="form-control" placeholder="License Name"/>
 				  </div>
-	                        <div class="form-group">
-	                             <input class="add" type="submit" class="btn btn-default" value="Search"/>
-	                         </div>
+				 <div class="form-group">
+					 <input class="add" type="submit" class="btn btn-default" value="Search"/>
+				  </div>
 				</form>
 			</nav>
           </section>
-		  <section id="resultePhp">
-		 <?php			
+		  <div class="clear"></div>
+		  <section id="resultePhp2">
+		 <?php
 				$conn = mysqli_connect($servername, $username, $password, $dbname); // Create connection
 				if (!$conn) // Check connection
 				{	
 				    die("Connection failed: " . mysqli_connect_error());
 				}
-				$sql = "SELECT \n"
-					. "licenses_contract_219.lcID,\n"
-					. "licenses_contract_219.lName,\n"
-					. "licenses_contract_219.cID,\n"
-					. "licenses_contract_219.Amount,\n"
-					. "licenses_contract_219.startDate,\n"
-					. "licenses_contract_219.endDate,\n"
-					. "licenses_contract_219.File\n"
-					. "From licenses_contract_219\n"
-					. "ORDER BY licenses_contract_219.lName";	
+			
+				$sql = "SELECT licenses_contract_219.lName, 
+				licenses_contract_219.lcID,
+				licenses_contract_219.cID,				
+				licenses_contract_219.Amount, 
+				licenses_contract_219.startDate, 
+				licenses_contract_219.endDate, 
+				licenses_contract_219.File, 
+				licenses_contract_219.Comments 
+				FROM licenses_contract_219 
+				ORDER BY licenses_contract_219.lName";
+							
 				$result = $conn->query($sql);
 				if ($result->num_rows > 0) {
-				    echo "<table><tr><th>ID</th><th>Name</th><th>CID</th><th>Amount</th><th>Start Date</th><th>End Date</th>
-						<th>File</th></tr>";
+				    echo "<table><tr><th>License Name</th><th>License ID</th><th>Company ID</th>
+								<th>Project Amount</th><th>start Date</th><th>end Date</th><th>File</th><th>Comments</th>
+						</tr>";
 				    // output data of each row
 				    while($row = $result->fetch_assoc()) {
 				        echo "<tr>
-								<td>".$row["lcID"]."</td>
 								<td>".$row["lName"]."</td>
+								<td>".$row["lcID"]."</td>
 								<td>".$row["cID"]."</td>
 								<td>".$row["Amount"]."</td>
 								<td>".$row["startDate"]."</td>
 								<td>".$row["endDate"]."</td>
 								<td>".$row["File"]."</td>
+								<td>".$row["Comments"]."</td>
 								</tr>";
 				    }
 				    echo "</table>";
@@ -134,6 +106,7 @@ include "configFile.php"
 				    echo "0 results";
 				}
 				mysqli_close($conn);
+				session_destroy();
 				?>
 		</section>
 	    </main>
