@@ -1,28 +1,48 @@
 <?php
+
 session_start();
+
 ob_start();
+
 include "configFile.php";
 
+
+
 if (! ($_SESSION['logged_in']))
+
 {
+
 	echo "<script> 
+
+
 
 	alert('You are not logged in, please connect');
 
+
+
 	window.location = 'index.php';
 
+
+
 	</script>";
+
 }
+
 ?>
-
 <!DOCTYPE html>
-
 
 <html>
 
+
+
 <head>
 
+
+
 	<title>Program licence-Create</title>
+
+
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -71,161 +91,180 @@ if (! ($_SESSION['logged_in']))
                 <li><a href="LicenseAlerts.php">Notifications</a></li>
 	         </ul>
 
-	    </header>    
+	    </header>
+
 
         <main> 
 
+
+
           <section class="mobileMenu">
+
     		<nav role="navigation" class="navbar navbar-default">
+
     		<div class="navbar-header">
+
             <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+
                 <span class="sr-only">Toggle navigation</span>
+
                 <span class="icon-bar"></span>
+
                 <span class="icon-bar"></span>
+
                 <span class="icon-bar"></span>
+
             </button>
+
             </div>
+
        
+
         	<div id="navbarCollapse" class="collapse navbar-collapse">
+
             <ul class="nav navbar-nav">
+
                 <li><a href="home.php">Home</a></li>
+
                 <li class="dropdown">
+
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">Licences<b class="caret"></b></a>
+
                     <ul role="menu" class="dropdown-menu">
+
                         <li><a href="LicenseSelect.php">Search/Update Licence</a></li>
                         <li><a href="LicenseCreate.php">Create New Licence</a></li>
+
                     </ul>
+
                 </li>
+
                 <li><a href="LicenseAlerts.php">Notifications</a></li> 
+
             </ul>
+
         	</div>
+
     		</nav>
+
 		</section>
 
+
+
           
+
           <section id="content">
 
-			    <h1>Create Licence - create new</h1>
 
-                <h2>Fill in the following fields:</h2>
-                
-                <h3>(*) Required</h3>
 
-                <nav class="CreateLicense">
+			    <h1>Create Licence</h1>
+<?php
 
-				    <form action="LicenseCreate1.php" method="post" name="CreateForm">
+$lcID =$_POST['LicenceID'];
 
-				    	<section class="formCol">
+//echo $lcID;
 
-				    		<div class="form-group">
+$pID =$_POST['ProjectID'];
 
-					    		<label>Licence ID (*)</label>
+//echo $pID;
 
-					    		<input type="number" class="form-control" placeholder="License ID"  min="1" max="999" name="lcID" required title="please enter max 3 numbers" />
+$AmountL = $_POST['Amount'];
 
-					    	 </div>
 
-							 <div class="form-group">
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
 
-	                         	<label>Licence Name (*)</label>
+$sql = "INSERT INTO licenses_proj_219 (lcID,lcAmount, pID,pAmount)
+					   VALUES ('$lcID', '$AmountL', '$pID','$AmountL')";
 
-	                         	<input type="text" class="form-control" placeholder="Program Name" name="lName" required max="50"/>
 
-	                         </div>
+if ($conn->query($sql) === TRUE) {
 
-							 <div class="form-group">
+    echo   "Record updated successfully";
+} else {
+    echo "Error updating record: " . $conn->error;
+}
+$conn->close();
+?>
 
-					    		<label>Company ID (*)</label>
 
-					    		<input type="number" class="form-control" placeholder="Company ID" name="cID" required min="1" max="999" title="please enter max 3 numbers" />
+                <nav class="CreateLicenseBar">
 
-					    	 </div>
 
-	                         <div class="form-group">
 
-	                            <label>Start Date</label>
+                	<section>
 
-	                            <input type="date" class="form-control" name="startDate" />
 
-	                         </div>
 
-	                         <div class="form-group">
+                		<a href="LicenseCreateNew.php" target="_blank"><button class="btn btn-default">Create New</button></a>
 
-	                          	<label>End Date</label>
 
-	                          	<input type="date" class="form-control" name="endDate" />
 
-	                         </div>
+                	</section>
 
-				    	</section>
 
-						<section class="formCol">
 
-							<div class="form-group">
+                	<section>
 
-	                            <label>Amount (*)</label>
 
-	                            <input type="number" class="form-control" placeholder="amount" name="Amount" min="0" max="999" required/>
 
-	                         </div>
+                		<a id="assign" href="assignProject.php" target="_blank"><button class="btn btn-default">Assign to project</button></a>
 
-                    		<div class="form-group">
 
-	                    		<label>Attach File</label>
 
-	                    		<input type="file" class="form-control" name="file" />
+                	</section>
 
-	                        </div>
 
-	                    	<div class="form-group">
-
-	                           	<label>Comments</label>
-
-	                           	<textarea id="comments" class="form-control" placeholder="comments" rows="4" name="Comments"></textarea>
-
-	                       </div>
-
-	                        <div class="form-group">
-
-	                        	<input id="box" type="checkbox" class="form-control" name="Permissiom" checked/> 
-
-	                           	<label>Public Licence?</label>
-
-	                        </div>
-
-	                        <div class="form-group">
-
-	                           	<input class="btn btn-default" type="submit" value="Create Licence">	                         
-
-	                        </div>
-
-                		</section>
-
-						<div class="clear"></div>
-
-				    </form>
 
 			    </nav>
 
+
+
           </section>
+
+
 
 	    </main>
 
+
+
+         <div class="clear"></div>
+
+
+
      </div>
+
+
+
 	    <footer>
 				<p><a href="http://ataliahoren.github.io/programslicense/" target="_blank">.Copyright &copy; AMR</p>
 				<p>Miri Haikin, Atalia Schuster, Rotem Emergi</p>
 	    </footer>
 
+
+
         <script>
+
+
 
             (function() {
 
+
+
                 })();
+
+
 
         </script>
 
+
+
     </body>
 
-</html>
 
+
+</html>

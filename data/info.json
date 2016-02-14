@@ -1,0 +1,29 @@
+{
+ "options": [
+ {
+ "link": "LicenseSelect.php",
+ "name": "View Existing information about Licences, Projects and Contracts"
+ }, 
+  {
+ "link": "LicenseSelect.php",
+ "name": "Update Existing Licence Contract"
+ }, 
+  {
+ "link": "LicenseCreateNew.php",
+ "name": "Create new Licence Contract"
+ }, 
+  {
+ "link": "assignProject.php",
+ "name": "Assign Licences to Projects"
+ }, 
+  {
+ "link": "LicenseAlerts.php",
+ "name": "Getting alerts"
+ }, 
+   {
+ "link": "#",
+ "name": "Export information"
+ }
+
+ ]
+}

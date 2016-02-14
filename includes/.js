@@ -1,6 +1,8 @@
 
 $(document).ready(function() {
 	$.getJSON("data/info.json", function(data) {
+		$('#mainContent h1').html(data.mainTitle);
+		$('#mainContent h2').html(data.subTitle);
 		$('#mainContent').append("<ul>");
 		$.each(data.options, function() {
 				$('#mainContent').append("<li><a href="+ this.link + ">"
@@ -49,7 +51,74 @@ $(document).ready(function () {
 });
 
 
+
+   /*nav*/
+
+$("#update").click(function()  {
+
+    	 alert("select first the licence that you want to update")
+
+}); 
+
+
+
+$("#assign").click(function()  {
+
+    	 alert("select first the licence that you want to assign")
+
+}); 
+
+
+
+
+
+ 
+
+/*var msg =  document.createElement('div');
+
+msg.id = 'dialog';
+
+msg.title = 'information';
+
+var p =  document.createElement('p');
+
+p.innerHTML = 'please select first the license that you want to assign';
+
+var appendmsg = document.getElementById("dialog")[0].appendChild(p);
+
+var alert = document.getElementById("assign");
+
+ alert.addEventListener(click, function() {
+
+	 this[0].appendChild(appendmsg);
+
+}); */
+
+
+
+ 
+
+$('#myTabs a[href="#profile"]').tab('show') // Select tab by name
+
+$('#myTabs a:first').tab('show') // Select first tab
+
+$('#myTabs a:last').tab('show') // Select last tab
+
+$('#myTabs li:eq(2) a').tab('show') // Select third tab (0-indexed)
+
 });
+
+
+
+var submenu=' <ul class="dropdown-menu">' + 
+
+'<li><a href="LicenseSelect.php">Search Licence</a></li>'+
+
+'<li><a id="update" href="LicenseSelect.php">Update Existing Contract/Project</a></li>'+
+
+'<li><a href="LicenseCreate.php">Create new Licence Contract</a></li>'+
+
+'</ul>' 
 
 
 
@@ -58,7 +127,7 @@ $(document).ready(function () {
 
 /*login*/
 
-
+/*
 
 function forgotCheckMail(){
 
@@ -120,6 +189,4 @@ function loginCheckMail(){
 
 }
 
-
-
-
+*/

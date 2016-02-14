@@ -1,59 +1,148 @@
+<?php
+session_start();
+ob_start();
+include "configFile.php";
+
+if (! ($_SESSION['logged_in']))
+{
+	echo "<script> 
+
+	alert('You are not logged in, please connect');
+
+	window.location = 'index.php';
+
+	</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Program license-Create</title>
-	<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<title>Program licence-Create</title>
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="includes/style.css">
 	<script src="includes/jquery-1.11.3.min.js"></script>
 	<script src="includes/script.js"></script>
+	<meta name="viewport" content="width=device-width,initial-scale=1"> 
+
 </head>
+
 <body>
+
     <div id="wrapper">
+
     	<header>
-			<a href="index.html" id="logo" alt="logo" title="logo" /></a>
+
+			<a href="home.php" id="logo" alt="logo" title="logo" /></a>
+
 			<section id="user">
+
 				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-				<p>Atalia Schuster |<a href="login.php">Log Out</a></p>
+
+				<p><?php $_SESSION['Mail']; print_r($_SESSION['Mail']);?> |
+				<a href="index.php" onclick=Logout();>
+				<?php
+				
+				echo "<script> 
+				    function Logout () {				    	
+				        alert('logged out');
+				        window.location = 'index.php';
+				    }
+				</script>";
+				?>
+				Log Out</a></p>
+
 		     </section>
-			<ul class="nav nav-tabs">
-			  <li role="presentation"><a href="index.html" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-			  <li role="presentation" class="active">
-			     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-			      Licenses <span class="caret"></span></a>
-			    <script>document.write(submenu)</script>
-			  </li>			
-			  <li role="presentation"><a href="LicenseAlerts.html" aria-controls="Notifications" role="tab" data-toggle="tab">Notifications</a></li>
-				</ul>
+			 <ul class="nav nav-tabs">
+                <li><a href="home.php">Home</a></li>
+                <li class="active">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Licences <b class="caret"></b></a>
+                       <ul class="dropdown-menu">
+                            <li><a href="LicenseSelect.php">Search/Update Licence</a></li>
+                            <li><a href="LicenseCreate.php">Create new Licence Contract</a></li>
+                           </ul>
+                <li><a href="LicenseAlerts.php">Notifications</a></li>
+	         </ul>
+
 	    </header>
+
         <main> 
+
+          <section class="mobileMenu">
+    		<nav role="navigation" class="navbar navbar-default">
+    		<div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            </div>
+       
+        	<div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="home.php">Home</a></li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Licences<b class="caret"></b></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="LicenseSelect.php">Search/Update Licence</a></li>
+                        <li><a href="LicenseCreate.php">Create New Licence</a></li>
+                    </ul>
+                </li>
+                <li><a href="LicenseAlerts.php">Notifications</a></li> 
+            </ul>
+        	</div>
+    		</nav>
+		</section>
+
+          
           <section id="content">
-			    <h1>Create License</h1>
-                <!--<h2>Choose your step:</h2>-->
+
+			    <h1>Create Licence</h1>
+
                 <nav class="CreateLicenseBar">
+
                 	<section>
-                		<a href="LicenseCreateNew.php" target="_blank"><button>Create New</button></a>
+
+                		<a href="LicenseCreateNew.php"><button class="btn btn-default">Create New</button></a>
+
                 	</section>
+
                 	<section>
-                		<a id="assign" href="LicenseSelect.php" target="_blank"><button>Assign to project</button></a>
+
+                		<a id="assign" href="assignProject.php"><button class="btn btn-default">Assign to project</button></a>
+
                 	</section>
+
 			    </nav>
+
           </section>
+
 	    </main>
+
          <div class="clear"></div>
+
      </div>
-	    <footer id="buttom">
-			<p>.Copyright &copy; | MAR - Miri Haikin, Atalia Schuster, Rotem Emergi | <a href="https://il.linkedin.com/in/ataliaschuster" target="_blank">CONTACT US</a>
+
+	    <footer>
+				<p><a href="http://ataliahoren.github.io/programslicense/" target="_blank">.Copyright &copy; AMR</p>
+				<p>Miri Haikin, Atalia Schuster, Rotem Emergi</p>
 	    </footer>
+
         <script>
+
             (function() {
+
                 })();
+
         </script>
+
     </body>
+
 </html>

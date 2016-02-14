@@ -16,13 +16,11 @@ if (! ($_SESSION['logged_in']))
 ?>
 
 <!DOCTYPE html>
-
-
 <html>
 
 <head>
 
-	<title>Program licence-Create</title>
+	<title>Program licence-Alerts</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -31,6 +29,7 @@ if (! ($_SESSION['logged_in']))
 	<script src="includes/jquery-1.11.3.min.js"></script>
 	<script src="includes/script.js"></script>
 	<meta name="viewport" content="width=device-width,initial-scale=1"> 
+
 
 </head>
 
@@ -62,20 +61,20 @@ if (! ($_SESSION['logged_in']))
 		     </section>
 			 <ul class="nav nav-tabs">
                 <li><a href="home.php">Home</a></li>
-                <li class="active">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Licences <b class="caret"></b></a>
+                <li>
+                    <a href="LicenseSelect.php" data-toggle="dropdown" class="dropdown-toggle">Licences <b class="caret"></b></a>
                        <ul class="dropdown-menu">
                             <li><a href="LicenseSelect.php">Search/Update Licence </a></li>
                             <li><a href="LicenseCreate.php">Create new Licence Contract</a></li>
                            </ul>
-                <li><a href="LicenseAlerts.php">Notifications</a></li>
+                <li class="active"><a href="#">Notifications</a></li>
 	         </ul>
 
-	    </header>    
+	    </header>
 
         <main> 
-
-          <section class="mobileMenu">
+        	
+        	<section class="mobileMenu">
     		<nav role="navigation" class="navbar navbar-default">
     		<div class="navbar-header">
             <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -102,116 +101,75 @@ if (! ($_SESSION['logged_in']))
     		</nav>
 		</section>
 
-          
+
           <section id="content">
 
-			    <h1>Create Licence - create new</h1>
+            <h1>Notifications</h1>
 
-                <h2>Fill in the following fields:</h2>
-                
-                <h3>(*) Required</h3>
 
-                <nav class="CreateLicense">
-
-				    <form action="LicenseCreate1.php" method="post" name="CreateForm">
-
-				    	<section class="formCol">
-
-				    		<div class="form-group">
-
-					    		<label>Licence ID (*)</label>
-
-					    		<input type="number" class="form-control" placeholder="License ID"  min="1" max="999" name="lcID" required title="please enter max 3 numbers" />
-
-					    	 </div>
-
-							 <div class="form-group">
-
-	                         	<label>Licence Name (*)</label>
-
-	                         	<input type="text" class="form-control" placeholder="Program Name" name="lName" required max="50"/>
-
-	                         </div>
-
-							 <div class="form-group">
-
-					    		<label>Company ID (*)</label>
-
-					    		<input type="number" class="form-control" placeholder="Company ID" name="cID" required min="1" max="999" title="please enter max 3 numbers" />
-
-					    	 </div>
-
-	                         <div class="form-group">
-
-	                            <label>Start Date</label>
-
-	                            <input type="date" class="form-control" name="startDate" />
-
-	                         </div>
-
-	                         <div class="form-group">
-
-	                          	<label>End Date</label>
-
-	                          	<input type="date" class="form-control" name="endDate" />
-
-	                         </div>
-
-				    	</section>
-
-						<section class="formCol">
-
-							<div class="form-group">
-
-	                            <label>Amount (*)</label>
-
-	                            <input type="number" class="form-control" placeholder="amount" name="Amount" min="0" max="999" required/>
-
-	                         </div>
-
-                    		<div class="form-group">
-
-	                    		<label>Attach File</label>
-
-	                    		<input type="file" class="form-control" name="file" />
-
-	                        </div>
-
-	                    	<div class="form-group">
-
-	                           	<label>Comments</label>
-
-	                           	<textarea id="comments" class="form-control" placeholder="comments" rows="4" name="Comments"></textarea>
-
-	                       </div>
-
-	                        <div class="form-group">
-
-	                        	<input id="box" type="checkbox" class="form-control" name="Permissiom" checked/> 
-
-	                           	<label>Public Licence?</label>
-
-	                        </div>
-
-	                        <div class="form-group">
-
-	                           	<input class="btn btn-default" type="submit" value="Create Licence">	                         
-
-	                        </div>
-
-                		</section>
-
-						<div class="clear"></div>
-
-				    </form>
-
-			    </nav>
-
-          </section>
-
+				 <h3>Projects without licences</h3>
+	    </section> 
+         <div class="clear"></div>
+	 <section id="resultePhpWithoutP">	 
+		 <?php
+				$conn = mysqli_connect($servername, $username, $password, $dbname); // Create connection
+				if (!$conn) // Check connection
+				{	
+				    die("Connection failed: " . mysqli_connect_error());
+				}
+				
+				
+				$sql = "SELECT projects_219.pName,
+						projects_219.pID,
+						projects_219.StartDate,
+						projects_219.EndDate,
+						projects_219.Client,
+						projects_219.Country,
+						projects_219.Comments,
+						projects_219.Status,
+						licenses_proj_219.lcID, 
+						licenses_proj_219.lcAmount, 
+						licenses_proj_219.pID, 
+						licenses_proj_219.pAmount 
+						FROM projects_219
+						join licenses_proj_219 ON projects_219.pID = licenses_proj_219.pID 
+						WHERE licenses_proj_219.lcID = 0 AND licenses_proj_219.pAmount = 0 ";
+							
+				$result = $conn->query($sql);
+				if ($result->num_rows > 0) {
+				    echo "<table><tr><td>Project Name</td><td>Project ID</td><td>Start Date</td>
+								<td>End Date</td><td>Client</td><td>Country</td><td>pAmount</td>
+								<td>lcID</td><td>lcAmount</td><td>Comments</td>
+						</tr>";
+				    // output data of each row
+				    while($row = $result->fetch_assoc()) {
+				        echo "<tr>
+								<td>".$row["pName"]."</td>
+								<td>".$row["pID"]."</td>
+								<td>".$row["StartDate"]."</td>
+								<td>".$row["EndDate"]."</td>
+								<td>".$row["Client"]."</td>
+								<td>".$row["Country"]."</td>
+								<td>".$row["lcID"]."</td>
+								<td>".$row["lcAmount"]."</td>
+								<td>".$row["pAmount"]."</td>
+								<td>".$row["Comments"]."</td>
+								</tr>";
+				    }
+				    echo "</table>";
+				} else {
+				    echo " All Projects With Licenses";
+				}
+				mysqli_close($conn);				
+				?>
+			<input id="export2" class="btn btn-default" type="button" onclick="location.href='ExportProjectswithoutlicences.php'" value="Export To Excel"/>
+		<section>   
 	    </main>
 
+         <div class="clear"></div>
+
      </div>
+
 	    <footer>
 				<p><a href="http://ataliahoren.github.io/programslicense/" target="_blank">.Copyright &copy; AMR</p>
 				<p>Miri Haikin, Atalia Schuster, Rotem Emergi</p>
@@ -228,4 +186,3 @@ if (! ($_SESSION['logged_in']))
     </body>
 
 </html>
-

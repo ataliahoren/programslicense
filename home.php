@@ -16,13 +16,11 @@ if (! ($_SESSION['logged_in']))
 ?>
 
 <!DOCTYPE html>
-
-
 <html>
 
 <head>
 
-	<title>Program licence-Create</title>
+	<title>Program licence-home</title>	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -31,6 +29,7 @@ if (! ($_SESSION['logged_in']))
 	<script src="includes/jquery-1.11.3.min.js"></script>
 	<script src="includes/script.js"></script>
 	<meta name="viewport" content="width=device-width,initial-scale=1"> 
+
 
 </head>
 
@@ -60,22 +59,22 @@ if (! ($_SESSION['logged_in']))
 				Log Out</a></p>
 
 		     </section>
-			 <ul class="nav nav-tabs">
-                <li><a href="home.php">Home</a></li>
-                <li class="active">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="home.php">Home</a></li>
+                <li>
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Licences <b class="caret"></b></a>
                        <ul class="dropdown-menu">
                             <li><a href="LicenseSelect.php">Search/Update Licence </a></li>
                             <li><a href="LicenseCreate.php">Create new Licence Contract</a></li>
-                           </ul>
+                        </ul>
                 <li><a href="LicenseAlerts.php">Notifications</a></li>
-	         </ul>
+	      </ul>
 
-	    </header>    
+	    </header>
 
         <main> 
-
-          <section class="mobileMenu">
+        	
+    	<section class="mobileMenu">
     		<nav role="navigation" class="navbar navbar-default">
     		<div class="navbar-header">
             <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -98,120 +97,23 @@ if (! ($_SESSION['logged_in']))
                 </li>
                 <li><a href="LicenseAlerts.php">Notifications</a></li> 
             </ul>
-        	</div>
-    		</nav>
-		</section>
+           </div>
+    	  </nav>
+	</section> 
 
-          
-          <section id="content">
+	    <section id="mainContent">	
+	
+		<h1>Welcome to the Software Licence System</h1>
+		<h2>in this system you can do:</h2>
 
-			    <h1>Create Licence - create new</h1>
-
-                <h2>Fill in the following fields:</h2>
-                
-                <h3>(*) Required</h3>
-
-                <nav class="CreateLicense">
-
-				    <form action="LicenseCreate1.php" method="post" name="CreateForm">
-
-				    	<section class="formCol">
-
-				    		<div class="form-group">
-
-					    		<label>Licence ID (*)</label>
-
-					    		<input type="number" class="form-control" placeholder="License ID"  min="1" max="999" name="lcID" required title="please enter max 3 numbers" />
-
-					    	 </div>
-
-							 <div class="form-group">
-
-	                         	<label>Licence Name (*)</label>
-
-	                         	<input type="text" class="form-control" placeholder="Program Name" name="lName" required max="50"/>
-
-	                         </div>
-
-							 <div class="form-group">
-
-					    		<label>Company ID (*)</label>
-
-					    		<input type="number" class="form-control" placeholder="Company ID" name="cID" required min="1" max="999" title="please enter max 3 numbers" />
-
-					    	 </div>
-
-	                         <div class="form-group">
-
-	                            <label>Start Date</label>
-
-	                            <input type="date" class="form-control" name="startDate" />
-
-	                         </div>
-
-	                         <div class="form-group">
-
-	                          	<label>End Date</label>
-
-	                          	<input type="date" class="form-control" name="endDate" />
-
-	                         </div>
-
-				    	</section>
-
-						<section class="formCol">
-
-							<div class="form-group">
-
-	                            <label>Amount (*)</label>
-
-	                            <input type="number" class="form-control" placeholder="amount" name="Amount" min="0" max="999" required/>
-
-	                         </div>
-
-                    		<div class="form-group">
-
-	                    		<label>Attach File</label>
-
-	                    		<input type="file" class="form-control" name="file" />
-
-	                        </div>
-
-	                    	<div class="form-group">
-
-	                           	<label>Comments</label>
-
-	                           	<textarea id="comments" class="form-control" placeholder="comments" rows="4" name="Comments"></textarea>
-
-	                       </div>
-
-	                        <div class="form-group">
-
-	                        	<input id="box" type="checkbox" class="form-control" name="Permissiom" checked/> 
-
-	                           	<label>Public Licence?</label>
-
-	                        </div>
-
-	                        <div class="form-group">
-
-	                           	<input class="btn btn-default" type="submit" value="Create Licence">	                         
-
-	                        </div>
-
-                		</section>
-
-						<div class="clear"></div>
-
-				    </form>
-
-			    </nav>
-
-          </section>
+	    </section> 
 
 	    </main>
 
+         <div class="clear"></div>
+
      </div>
+
 	    <footer>
 				<p><a href="http://ataliahoren.github.io/programslicense/" target="_blank">.Copyright &copy; AMR</p>
 				<p>Miri Haikin, Atalia Schuster, Rotem Emergi</p>
@@ -221,6 +123,8 @@ if (! ($_SESSION['logged_in']))
 
             (function() {
 
+				
+
                 })();
 
         </script>
@@ -228,4 +132,3 @@ if (! ($_SESSION['logged_in']))
     </body>
 
 </html>
-

@@ -14,15 +14,24 @@ if (! ($_SESSION['logged_in']))
 	</script>";
 }
 ?>
-
+<?php
+$_SESSION['lName']= $_GET['lName'];
+$lNameL = $_SESSION['lName'];
+$lcIDL = $_SESSION['lcID'];
+$cIDL = $_SESSION['cID'];
+$AmountL = $_SESSION['Amount'];
+$startDateL = $_SESSION['startDate'];
+$endDateL = $_SESSION['endDate'];
+$FileL = $_SESSION['File'];
+$CommentsL = $_SESSION['Comments'];
+?>
 <!DOCTYPE html>
-
-
 <html>
 
 <head>
 
-	<title>Program licence-Create</title>
+	<title>Program licence-Update</title>
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -73,9 +82,9 @@ if (! ($_SESSION['logged_in']))
 
 	    </header>    
 
-        <main> 
-
-          <section class="mobileMenu">
+        <main>
+        	
+        	<section class="mobileMenu">
     		<nav role="navigation" class="navbar navbar-default">
     		<div class="navbar-header">
             <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -101,19 +110,19 @@ if (! ($_SESSION['logged_in']))
         	</div>
     		</nav>
 		</section>
+ 
 
-          
           <section id="content">
 
-			    <h1>Create Licence - create new</h1>
+			    <h1>Update Existing Licence</h1>
 
-                <h2>Fill in the following fields:</h2>
+                <h2>change the fields you want to update:</h2>
                 
                 <h3>(*) Required</h3>
 
                 <nav class="CreateLicense">
 
-				    <form action="LicenseCreate1.php" method="post" name="CreateForm">
+				    <form action="LicenseSelectAfterupdate.php" method="post" name="CreateForm">
 
 				    	<section class="formCol">
 
@@ -121,7 +130,7 @@ if (! ($_SESSION['logged_in']))
 
 					    		<label>Licence ID (*)</label>
 
-					    		<input type="number" class="form-control" placeholder="License ID"  min="1" max="999" name="lcID" required title="please enter max 3 numbers" />
+					    		<input type="number" class="form-control" placeholder="License ID" min="1" max="99999" name="lcID" required title="please enter max 5 numbers" value ="<?php echo $lcIDL ?>" />
 
 					    	 </div>
 
@@ -129,7 +138,7 @@ if (! ($_SESSION['logged_in']))
 
 	                         	<label>Licence Name (*)</label>
 
-	                         	<input type="text" class="form-control" placeholder="Program Name" name="lName" required max="50"/>
+	                         	<input type="text" class="form-control" placeholder="Licence Name" name="lName" required max="50" value="<?php echo $lNameL ?>"/>
 
 	                         </div>
 
@@ -137,7 +146,7 @@ if (! ($_SESSION['logged_in']))
 
 					    		<label>Company ID (*)</label>
 
-					    		<input type="number" class="form-control" placeholder="Company ID" name="cID" required min="1" max="999" title="please enter max 3 numbers" />
+					    		<input type="number" class="form-control" placeholder="Company ID" name="cID" required min="1" max="9999999" title="please enter max 7 numbers" value="<?php echo $cIDL ?>"/>
 
 					    	 </div>
 
@@ -145,7 +154,7 @@ if (! ($_SESSION['logged_in']))
 
 	                            <label>Start Date</label>
 
-	                            <input type="date" class="form-control" name="startDate" />
+	                            <input type="date" class="form-control" name="startDate" value="<?php echo $startDateL ?>" />
 
 	                         </div>
 
@@ -153,7 +162,7 @@ if (! ($_SESSION['logged_in']))
 
 	                          	<label>End Date</label>
 
-	                          	<input type="date" class="form-control" name="endDate" />
+	                          	<input type="date" class="form-control" name="endDate" value="<?php echo $endDateL?>"/>
 
 	                         </div>
 
@@ -165,7 +174,7 @@ if (! ($_SESSION['logged_in']))
 
 	                            <label>Amount (*)</label>
 
-	                            <input type="number" class="form-control" placeholder="amount" name="Amount" min="0" max="999" required/>
+	                            <input type="number" class="form-control" placeholder="amount" name="Amount" min="0" max="999" required value="<?php echo $AmountL?>"/>
 
 	                         </div>
 
@@ -173,7 +182,7 @@ if (! ($_SESSION['logged_in']))
 
 	                    		<label>Attach File</label>
 
-	                    		<input type="file" class="form-control" name="file" />
+	                    		<input type="file" class="form-control" name="file" value="<?php echo $FileL ?>"/>
 
 	                        </div>
 
@@ -181,7 +190,7 @@ if (! ($_SESSION['logged_in']))
 
 	                           	<label>Comments</label>
 
-	                           	<textarea id="comments" class="form-control" placeholder="comments" rows="4" name="Comments"></textarea>
+	                           	<textarea id="comments" class="form-control" placeholder="comments" rows="4" name="Comments"value="<?php echo $CommentsL ?>"></textarea>
 
 	                       </div>
 
@@ -195,7 +204,7 @@ if (! ($_SESSION['logged_in']))
 
 	                        <div class="form-group">
 
-	                           	<input class="btn btn-default" type="submit" value="Create Licence">	                         
+	                            <input class="add" type="submit" class="btn btn-default" value="Save"/>
 
 	                        </div>
 
@@ -212,6 +221,7 @@ if (! ($_SESSION['logged_in']))
 	    </main>
 
      </div>
+
 	    <footer>
 				<p><a href="http://ataliahoren.github.io/programslicense/" target="_blank">.Copyright &copy; AMR</p>
 				<p>Miri Haikin, Atalia Schuster, Rotem Emergi</p>

@@ -16,12 +16,12 @@ if (! ($_SESSION['logged_in']))
 ?>
 
 <!DOCTYPE html>
-
 <html>
 
 <head>
 
-	<title>Program licence-Create</title>
+	<title>Program licence-Alerts</title>
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -61,18 +61,18 @@ if (! ($_SESSION['logged_in']))
 		     </section>
 			 <ul class="nav nav-tabs">
                 <li><a href="home.php">Home</a></li>
-                <li class="active">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Licences <b class="caret"></b></a>
+                <li>
+                    <a href="LicenseSelect.php" data-toggle="dropdown" class="dropdown-toggle">Licences <b class="caret"></b></a>
                        <ul class="dropdown-menu">
                             <li><a href="LicenseSelect.php">Search/Update Licence</a></li>
                             <li><a href="LicenseCreate.php">Create new Licence Contract</a></li>
                            </ul>
-                <li><a href="LicenseAlerts.php">Notifications</a></li>
+                <li class="active"><a href="#">Notifications</a></li>
 	         </ul>
 
 	    </header>
 
-        <main>
+        <main> 
 	    	<section class="mobileMenu">
     		<nav role="navigation" class="navbar navbar-default">
     		<div class="navbar-header">
@@ -100,64 +100,10 @@ if (! ($_SESSION['logged_in']))
     	  </nav>
 	</section> 
           <section id="content">
-
-			    <h1>Create Licence</h1>
-		<?php
-
-					$conn = new mysqli($servername, $username, $password, $dbname);
-
-					// Check connection
-
-					if ($conn->connect_error) {
-
-						die("Connection failed: " . $conn->connect_error);
-
-					} 
-
-
-
-					$sql = "INSERT INTO licenses_contract_219 (lcID, lName, cID,Amount,startDate,endDate,Permissiom,File,Comments)
-
-					VALUES ('".$_POST["lcID"]."', '".$_POST["lName"]."', '".$_POST["cID"]."', '".$_POST["Amount"]."', '".$_POST["startDate"]."', '".$_POST["endDate"]."', '".$_POST["Permissiom"]."', '".$_POST["File"]."', '".$_POST["Comments"]."')";
-
-
-
-					if ($conn->query($sql) === TRUE) {
-
-						echo "New record created successfully";
-
-					} else {
-
-						echo "Error: " . $sql . "<br>" . $conn->error;
-
-					}
-
-				?> 
-
-
-
-
-             	   <nav class="CreateLicenseBar">
-
-                	<section>
-
-                		<a href="LicenseCreateNew.php"><button class="btn btn-default">Create New</button></a>
-
-                	</section>
-
-                	<section>
-
-                		<a id="assign" href="assignProject.php"><button class="btn btn-default">Assign to project</button></a>
-
-                	</section>
-
-		   </nav>
-
-          </section>
-
-
-          </section>
-
+            <h1>Notifications</h1>
+				    <a href="expire.php" ><h3>Contract will be expire in 60 days</h3></a>
+				    <a href="ProjectsWithoutLicenses.php"><h3>Projects without licences</h3></a>
+	  </section>
 	    </main>
 
          <div class="clear"></div>

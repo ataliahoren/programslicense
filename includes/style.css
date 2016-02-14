@@ -10,12 +10,15 @@
 
 
 
-header,section,nav,aside,footer,main, article, ul, a, h3, h3, h1, p {
+header,section,nav,aside,footer,main, article, ul, a, h3, h1, p {
 
     display:block;
 
 }
 
+.mobileMenu {
+	display: none;
+}
 
 
 body {
@@ -42,7 +45,7 @@ body {
 
 
 
-ul {
+header ul , #content ul {
 
 	list-style-type: none;
 
@@ -64,7 +67,7 @@ header {
 
     height:132px;
 
-   	float: right;
+    float: right;
 
     background: #d6dde7 url(../images/navBgr.jpg) repeat-x;
 
@@ -124,13 +127,15 @@ main  {
 
 	float:left;	
 
-	height: 550px;
+	height: 1300px;
 
 }
 
 
 
-#content h1, #searchContent h1 {
+#content h1, #searchContent h1, #mainContent h1, #contentNew h1 {
+
+
 
     font-size: 24px;
 
@@ -140,27 +145,40 @@ main  {
 
     padding-left: 20px;
 
-	margin-top: 30px;
+    margin-top: 30px;
 
-	color:#004a8f;
-
-	text-shadow: 2px 2px #999999;
+    color:#004a8f;
+    
+    position: relative;
 
 }
 
-#content h2, #searchContent h2 {
+#content h2, #searchContent h2, #mainContent h2  {
 
     font-size: 18px;
 
-   	padding-left: 20px;
+    padding-left: 20px;
 
-    text-decoration: underline;
-
-	margin-top: 20px;
+    margin-top: 30px;
+    
+    position: relative;
 
 }
 
-#content ul li, #searchContent ul li {
+#content h3, #contentNew h3 {
+	font-size: 10px;
+
+	margin-top: 30px;
+	
+	color: #23527c;
+	
+	padding-bottom: 10px;
+    
+        position: relative;
+}
+
+
+#mainContent a, #searchContent ul li {
 
     font-size: 16px;	
 
@@ -174,17 +192,22 @@ main  {
 
     margin-left: 30px;
 
-	margin-top: 10px;
+    margin-top: 10px;
+
+
 
 }
 
+#mainContent li {
+	list-style-type: none;
+}
 
-
-#content ul li a:hover, #content ul li a:link, #content ul li a:visited {
+#content a:hover, #content a:link, #content a:visited, #mainContent ul li a:hover, #content ul li a:link, #content ul li a:visited {
 
 	text-decoration: none;
 
 }
+
 
 
 
@@ -193,32 +216,31 @@ main  {
 
 
 footer {
-
-   width:100%;
-
-   padding-top: 10px;
-
-   background: #032d5f;
-
-   float:left;  
-
-   height: 40px;
+	
+    width:100%;
+    background: #032d5f;
+    float:left;
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
 
 }
 
-
+footer a, footer p {
+    text-align: center;
+    position: relative;
+    top:2px;
+}
 
 footer a:link, footer a:visited, footer p
 
 {
-
     font-size: 15px;
-
-    color: #FFFFFF;	
-
+    text-align: center;
+    color: #ffffff;
     text-decoration: none;
 
-    display:inline;
 
 }
 
@@ -261,8 +283,9 @@ background: url(../images/login_bg1.jpg);
 
 
 .container{
-
-	width:350px;
+	
+	/*width:350px;*/
+	width:40%;
 
 }
 
@@ -278,10 +301,13 @@ background: url(../images/login_bg1.jpg);
 
 }
 
+#loginBut{
 
+margin-top:10px;
+}
 	 
 
-/*********search lisense*******/
+/*********search licence*******/
 
 .searchLicense label, .CreateLicense label {
 
@@ -295,71 +321,31 @@ background: url(../images/login_bg1.jpg);
 
 
 
-.searchLicense form input, .CreateLicense form input, .CreateLicense form textarea{
+.searchLicense form input, .CreateLicense form input, .CreateLicense form textarea, .CreateLicense form a {
 
-	position: relative; 	
+    position: relative; 	
 
-	left: 20px;	
-
-    width: 270px;
-
-    margin-bottom: 10px;
-
-}
-
-
-
-.add{
-
-	position: relative; 	
-
-	left: 20px;	
-
-    margin-bottom: 10px;
-
-
-
-}
-
-
-
-
-
-/*********create lisense*******/
-
-/*
-
-.CreateLicense .formCol, {
-
-	margin-top: 15px;
-
-	float:left;
-
-	width: 350px;
-
-}
-
-
-
-
-
-#comments{
-
-	position: relative; 		
-
-    border-radius: 10px;
+    left: 20px;	
 
     width: 270px;
 
-    height: 60px;
-
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 
 }
 
+#export{
+	position: relative;
+	margin-left:220px;
+	
+}
 
+#export2{
+	position: relative;
+	margin-left:285px;
+}
 
-*/
+/*********create licence*******/
+
 
 #box {
 
@@ -383,9 +369,9 @@ background: url(../images/login_bg1.jpg);
 
 .CreateLicenseBar section{
 
-    width: 190px;
+    width: 250px;
 
-    margin-top: 20px;
+    margin-top: 40px;
 
     margin-bottom: 20px;
 
@@ -399,15 +385,18 @@ background: url(../images/login_bg1.jpg);
 
 .CreateLicenseBar section a button{
 
-    width: 170px;
+    width: 200px;
+    
+    height: 40px;
 
 }
 
 
 
-.searchLicense section, .CreateLicense  section, #resultePhp section {
+.searchLicense section, .CreateLicense  section, #resultePhpL section, #resultePhpP section {
 
-	width: 400px;
+	/*width: 400px;*/
+	width: 30%;
 
 	float:left;
 
@@ -419,102 +408,259 @@ background: url(../images/login_bg1.jpg);
 
 /*******notofications*********/
 
-#content h3{
+#content h3, #contentNew h3{
 
     margin-left: 20px;
 
     margin-bottom: 2px;
 
- 	font-size: 16px;
+    font-size: 16px;
 
 }
 
+/*******tablet*********/
 
+@media (min-width:591px) and (max-width:800px) {
 
-
-
-/*******style of table result לעדכן!!*********/
-
-/*
-
-tr.Projects_Result{
-
-  background-color: #86B404;<!--hsl(120, 30%, 70%);-->
-
+main {
+	width: 100%;
+	
+	height: 1200px;
+	
+	float:left;
 }
 
-tr.Projects_Result:hover{
-
-  background-color: hsl(150,10%,50%);
-
-  cursor: pointer;
-
-}*/
-
-
-
-
+.CreateLicenseBar section a button {
+	
+    height: 40px;
+	
+    margin-top: 30px;
+    
+    margin-left: 20px;
+    
+    width: 250px;
+}	
+}
 
 /*******mobile*********/
 
 @media (max-width:590px) {
+	
+	header {
+	width:100%;
+
+    	height:132px;
+
+  	background: #d6dde7 url(../images/navBgr.jpg) repeat-x;
+  		
+	}
+
+	
+	.mobileMenu {
+    	float: right;
+    	
+    	width: 100%;
+    	
+    	display: inline-block ;
+        
+        position: absolute;
+        
+        z-index: 100;
+	}
+    
+	header .nav {
+	display: none;
+	}
+
+
+	main {
+	width: 100%;
+	
+	height: 5000px;
+	
+	float:left;
+	}
+
 
 	.searchLicense section, .CreateLicense section, .CreateLicenseBar section{
 
-	float:none
+	float:none;
 
-	width:100%
+	width:100%;
 
 	margin: 0px;
 
-	}		
+	}
 
-	#logo{
+	
+	.CreateLicenseBar section a button {
+	
+	height: 40px;
+	
+	margin-top: 30px;
+    
+    	margin-left: 20px;
+    
+   	width: 250px;
+	}
+	
+	#searchContent, #contentNew {
 
-		/*לטפל*/
+        margin-top: 60px;
+	width: 150%;
+
+	float: none;
 
 	}
-	main	{
 
-	height: 1500px;
+
+
+	#mainContent h1{
+
+	margin-top: 70px;
 
 	}
+		/**for expired licences in 60 days AND search for licence Name**/
+		#resultePhpExpire td:nth-of-type(1):before, #resultePhpL td:nth-of-type(1):before { content: "License Name"; }
+		#resultePhpExpire td:nth-of-type(2):before, #resultePhpL td:nth-of-type(2):before { content: "License ID"; }
+		#resultePhpExpire td:nth-of-type(3):before, #resultePhpL td:nth-of-type(3):before { content: "Company ID"; }
+		#resultePhpExpire td:nth-of-type(4):before, #resultePhpL td:nth-of-type(4):before { content: "Project Amount"; }
+		#resultePhpExpire td:nth-of-type(5):before, #resultePhpL td:nth-of-type(5):before { content: "start Date"; }
+		#resultePhpExpire td:nth-of-type(6):before, #resultePhpL td:nth-of-type(6):before { content: "end Date"; }
+		#resultePhpExpire td:nth-of-type(7):before, #resultePhpL td:nth-of-type(7):before { content: "File"; }
+		#resultePhpExpire td:nth-of-type(8):before, #resultePhpL td:nth-of-type(8):before { content: "Comments"; }
+	
+		/**for projects without licences**/
+		#resultePhpWithoutP td:nth-of-type(1):before { content: "Project Name"; }
+		#resultePhpWithoutP td:nth-of-type(2):before { content: "Project ID"; }
+		#resultePhpWithoutP td:nth-of-type(3):before { content: "start Date"; }
+		#resultePhpWithoutP td:nth-of-type(4):before { content: "end Date"; }
+		#resultePhpWithoutP td:nth-of-type(5):before { content: "Client"; }
+		#resultePhpWithoutP td:nth-of-type(6):before { content: "Country"; }
+		#resultePhpWithoutP td:nth-of-type(7):before { content: "Project Amount"; }
+		#resultePhpWithoutP td:nth-of-type(8):before { content: "lcID"; }
+		#resultePhpWithoutP td:nth-of-type(9):before { content: "lcAmount"; }
+		#resultePhpWithoutP td:nth-of-type(10):before { content: "Comments"; }
+		
+		/**search for Project Name**/
+		#resultePhpP td:nth-of-type(1):before { content: "Project Name"; }
+		#resultePhpP td:nth-of-type(2):before { content: "Project ID"; }
+		#resultePhpP td:nth-of-type(3):before { content: "Licence ID"; }
+		#resultePhpP td:nth-of-type(4):before { content: "Project Amount"; }
+		#resultePhpP td:nth-of-type(5):before { content: "Licence Name"; }
+		#resultePhpP td:nth-of-type(6):before { content: "Company ID"; }
+		#resultePhpP td:nth-of-type(7):before { content: "Licence Amount"; }
+		#resultePhpP td:nth-of-type(8):before { content: "startDate"; }
+		#resultePhpP td:nth-of-type(9):before { content: "endDate"; }
+		#resultePhpP td:nth-of-type(10):before { content: "File"; }
+		#resultePhpP td:nth-of-type(11):before { content: "Comments"; }
+		
+	#show table {
+		display:none;
+	}
+
+		/* Force table to not be like tables anymore */
+		table, thead, tbody, th, td, tr {
+			display: block;
+			width: 120%;
+
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+		tr { border-bottom: 1px solid #ccc; }
+
+		td {
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+			padding-left: 40%;
+		}
+
+ 	table tr:first-child td { 
+	display: none;
+	}
+
+		td:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			left: 6px;
+			width: 25%;
+			padding-right: 10px;
+			white-space: nowrap;
+			text-align: left;
+			background: #ffffff;
+			color: #000000;	
+			font-weight: bold;
+		}
+	#export2, #export{
+	display: inline;
+	margin-left:10px;
+	}
+
+	#resultePhpL h4, #resultePhpP h4{
+		position: relative;
+	
+	}
+
+
+
 
 }
-
 
 
 /******************************* TABLES **********************************/
 
 
 
-#searchContent {
+#searchContent, #contentNew {
 
-	width: 450px;
-
-	float: left;
-
-	
+	/*width: 450px;*/
+	width: 100%;
+	float: left;	
 
 }
 
-#resultePhp h4 {
+#content {
 
-	text-align: center;
+	/*width: 800px;*/
+	width: 80%;
+
+	float: left;	
 
 }
 
-#resultePhp {
+
+#resultePhpL h4, #resultePhpP h4 {
+
+	margin-left:20px;
+
+}
+
+#resultePhpL, #resultePhpP{
 
 		margin-top: 35px;
 
 		float: left;
 
-		width: 800px;
+		/*width: 700px;*/
+		width:58%;
+		margin-left:20px;
+
 
 }
 
 
+#show table {
+display:block;
+}
 
 table {	
 
@@ -526,7 +672,7 @@ table {
 
 	margin: 10px;
 
-	width:780px;
+	width: 60%;
 
 }
 
@@ -544,15 +690,16 @@ table td {
 
 
 
-table th {
+table tr:first-child td {
 
 	text-align: center;
 
 	height: 20px;	
 
+	font-weight: bold;
 	background: #d6dde7;
 
-	color: black;	
+	color: #000000;	
 
 	width:30px;
 

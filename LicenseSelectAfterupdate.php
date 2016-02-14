@@ -14,7 +14,44 @@ if (! ($_SESSION['logged_in']))
 	</script>";
 }
 ?>
+<?php
+$lNameL =$_POST['lName'];
+//echo $lNameL;
+$lcIDL = $_POST['lcID'];
+//echo $lcIDL;
+$cIDL = $_POST['cID'];
+//echo $cIDL;
+$AmountL = $_POST['Amount'];
+//echo $AmountL ;
+$startDateL = $_POST['startDate'];
+//echo $startDateL ;
+$endDateL = $_POST['endDate'];
+//echo $endDateL;
+$FileL = $_POST['File'];
+//echo $FileL ;
+$CommentsL = $_POST['Comments'];
+//echo $CommentsL;
 
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+$sql = "UPDATE licenses_contract_219 SET
+		Amount='$AmountL',startDate='$startDateL',
+		endDate='$endDateL',Permissiom='1',
+		File='$FileL',Comments='$CommentsL'
+		WHERE lName='$lNameL'";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . $conn->error;
+}
+
+$conn->close();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,9 +105,10 @@ if (! ($_SESSION['logged_in']))
 	         </ul>
 
 	    </header>
+
         <main> 
         	
-        <section class="mobileMenu">
+        	<section class="mobileMenu">
     		<nav role="navigation" class="navbar navbar-default">
     		<div class="navbar-header">
             <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -98,7 +136,7 @@ if (! ($_SESSION['logged_in']))
 		</section>
 	
           <section id="searchContent">
-            <h1>Srearch Licence To View Or Update</h1>
+            <h1>Search Licence To View Or Update</h1>
             <h2>Search By:</h2>
             <nav class="searchLicense">
 <?php
@@ -134,84 +172,63 @@ if (! ($_SESSION['logged_in']))
 				{									
 					header('Location: LicenseName.php?lName='.$_POST['lName']);
 				}		
-?>				
-				<form action="" method="POST" name="ProjectNameForm">					
+?>
+				<form  method="POST" name="LicenseSelectForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">					
 				  <div class="form-group">
 				    <label for="exampleInputProject">Project Name</label>
-				    <input type="text" name="pName" class="form-control" placeholder="Project Name"/>
-				  </div>
+				    <input type="text" name="pName" class="form-control" placeholder="Project Name" value="<?php echo $pName;?>"/>
+					<span class="error"><?php echo $pNameErr;?></span><br>
+				  </div>				  
 				  <div class="form-group">
 				    <label for="exampleInputPassword1">Licence Name</label>
-				    <input type="text" name="lName" class="form-control" placeholder="License Name"/>
+				    <input type="text" name="lName" class="form-control" placeholder="License Name"value="<?php echo $lName;?>"/>
+					<span class="error"><?php echo $lNameErr;?></span><br>
 				  </div>
-	              <div class="form-group">
-	                <input id="add" type="submit" class="btn btn-default" value="Search"/>
+	              <div class="form-group">	                             
+	              	<input id="add" type="submit" class="btn btn-default" value="Search"/>
 	              </div>
 				</form>
 			</nav>
           </section>
-		  <section id="resultePhpP">
-		 <?php
+		  <section id="resultePhp">
+		 <?php			
 				$conn = mysqli_connect($servername, $username, $password, $dbname); // Create connection
 				if (!$conn) // Check connection
 				{	
 				    die("Connection failed: " . mysqli_connect_error());
 				}
-				if( isset($_GET['pName']) ){$pNameP = $_GET['pName'];}
-				$sql = "SELECT projects_219.pName,
-				projects_219.pID,
-				licenses_proj_219.lcID, 
-				licenses_proj_219.lcAmount, 
-				licenses_proj_219.pID, 
-				licenses_proj_219.pAmount, 
-				licenses_contract_219.lcID, 
-				licenses_contract_219.lName, 
-				licenses_contract_219.cID, 
-				licenses_contract_219.Amount, 
-				licenses_contract_219.startDate, 
-				licenses_contract_219.endDate, 
-				licenses_contract_219.File, 
-				licenses_contract_219.Comments 
-				FROM projects_219
-				join licenses_proj_219 ON projects_219.pID = licenses_proj_219.pID 
-				join licenses_contract_219 ON licenses_proj_219.lcID = licenses_contract_219.lcID 
-				WHERE pName = '$pNameP'";
-							
-				$result = $conn->query($sql);
-				if ($result->num_rows > 0) {
-					echo "<h4>Licenses in Projects</h4>";
-				    echo "<table><tr><td>Project Name</td><td>Project ID</td><td>Licence ID</td>
-								<td>Project Amount</td><td>Licence Name</td><td>Company ID</td><td>Licence Amount</td>
-								<td>startDate</td><td>endDate</td><td>File</td><td>Comments</td>
-						</tr>";
+				$sql = "SELECT \n"
+					. "licenses_contract_219.lcID,\n"
+					. "licenses_contract_219.lName,\n"
+					. "licenses_contract_219.cID,\n"
+					. "licenses_contract_219.Amount,\n"
+					. "licenses_contract_219.startDate,\n"
+					. "licenses_contract_219.endDate,\n"
+					. "licenses_contract_219.File\n"
+					. "From licenses_contract_219\n"
+					. "ORDER BY licenses_contract_219.lName";	
+				$result = $conn->query($sql);/*
+				if ($result->num_rows > 0) {					echo "<h1>Licences Contracts</h1>";					
+				    echo "<table><tr><th>license ID</th><th>license Name</th><th>Company ID</th><th>Amount</th><th>Start Date</th><th>End Date</th>
+						<th>File</th></tr>";
 				    // output data of each row
 				    while($row = $result->fetch_assoc()) {
 				        echo "<tr>
-								<td>".$row["pName"]."</td>
-								<td>".$row["pID"]."</td>
 								<td>".$row["lcID"]."</td>
-								<td>".$row["pAmount"]."</td>
 								<td>".$row["lName"]."</td>
 								<td>".$row["cID"]."</td>
 								<td>".$row["Amount"]."</td>
 								<td>".$row["startDate"]."</td>
 								<td>".$row["endDate"]."</td>
 								<td>".$row["File"]."</td>
-								<td>".$row["Comments"]."</td>
 								</tr>";
 				    }
 				    echo "</table>";
 				} else {
-				    echo "The project $pNameP not found";
-				}
-				mysqli_close($conn);				
+				    echo "0 results";
+				}*/
+				mysqli_close($conn);
 				?>
-				<?php
-				$_SESSION['pName'] = $pNameP;
-				//_SESSION['pName']; 
-				//print_r($_SESSION['pName']);
-				?>
-		<input id="export2" class="btn btn-default" type="button" onclick="location.href='ExportToExcelProjectName.php?pName=<?php $_SESSION['pName']; print_r($_SESSION['pName']);?>';" value="Export To Excel"/>
 		</section>
 	    </main>
          <div class="clear"></div>
